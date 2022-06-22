@@ -1,17 +1,20 @@
 # Как сделать сборку webpack
 
-### Инициализируем проект
+### Команды
+1. Минимальная сборка: инициализируем проект, устанавливаем webpack пакеты
 ```
 npm init -y
-```
-
-### Установка webpack пакетов
-```
 npm i -D webpack webpack-cli
 ```
-
-### Шаги
-1. Минимальная сборка
 2. Добавление dev server
-3. Добавление loaders
-4. Добавление plugins
+```
+npm i -D webpack-dev-server
+```
+3. Добавление стилей
+```
+npm i -D style-loader css-loader
+```
+4. Добавление TypeScript
+```
+npm i -D typescript ts-loader
+```
