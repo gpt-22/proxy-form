@@ -18,3 +18,8 @@ npm i -D style-loader css-loader
 ```
 npm i -D typescript ts-loader
 ```
+5. Добавление ESLint и Prettier
+```
+npm i -D eslint eslint-loader @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-webpack-plugin prettier eslint-config-prettier
+```
+6. 

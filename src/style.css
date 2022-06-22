@@ -13,7 +13,8 @@
   font-family: 'Inter', sans-serif;
 }
 
-input:focus, button:focus {
+input:focus,
+button:focus {
   outline: #505050;
 }
 
@@ -34,7 +35,7 @@ input:focus, button:focus {
 
 .form-title {
   margin: 0;
-  font: 700 20px "Inter"
+  font: 700 20px 'Inter';
 }
 
 .form-body {
@@ -43,11 +44,12 @@ input:focus, button:focus {
   gap: 16px;
 }
 
-.field {}
+.field {
+}
 
 .field-hint {
   margin: 4px 0 0;
-  font: 12px "Inter"
+  font: 12px 'Inter';
 }
 
 .input {

@@ -1,3 +1,5 @@
+import { form } from './data'
+
 function createOnChangeProxy(onChange, target) {
   return new Proxy(target, {
     get(target, property) {
@@ -9,7 +11,7 @@ function createOnChangeProxy(onChange, target) {
       target[property] = newValue
       onChange(property, newValue)
       return true
-    },
+    }
   })
 }
 
@@ -40,32 +42,8 @@ function createOnChangeProxy(onChange, target) {
 //
 // console.log(proxy);
 
-const form = {
-  title: 'Вход',
-  fieldEmail: {
-    id: 'field-email',
-    type: 'email',
-    placeholder: 'Введите email',
-    hint: '',
-    value: '',
-    isValid: false
-  },
-  fieldPassword: {
-    id: 'field-password',
-    type: 'password',
-    placeholder: 'Введите пароль',
-    hint: '',
-    value: '',
-    isValid: false
-  },
-  submitButtonText: 'Войти',
-  isValid: false
-}
-
-
 const formProxy = createOnChangeProxy((p, v) => {
   console.log('form change', p, v)
 }, form)
 
 formProxy.fieldEmail.value = '123'
-
