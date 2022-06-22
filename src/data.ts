@@ -1,21 +1,4 @@
-export type FormField = {
-  id: string
-  type: string
-  placeholder: string
-  hint: string
-  value: string
-  isValid: boolean
-}
-
-export type Form = {
-  title: string
-  fieldEmail: FormField
-  fieldPassword: FormField
-  submitButtonText: string
-  isValid: boolean
-}
-
-export const form: Form = {
+export const form = {
   title: 'Вход',
   fieldEmail: {
     id: 'field-email',

@@ -1,15 +1,17 @@
 const path = require('path')
+const HTMLWebpackPlugin = require('html-webpack-plugin')
 const ESLintPlugin = require('eslint-webpack-plugin')
 
 module.exports = {
   mode: 'development',
-  entry: './src/main.ts',
+  context: path.resolve(__dirname, 'src'),
+  entry: './main.ts',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'main.bundle.js'
   },
   devServer: {
-    static: './dist'
+    static: path.resolve(__dirname, 'dist')
   },
   module: {
     rules: [
@@ -25,6 +27,10 @@ module.exports = {
     ]
   },
   plugins: [
+    new HTMLWebpackPlugin({
+      title: 'Proxy Form',
+      template: './index.html'
+    }),
     new ESLintPlugin({
       files: 'src/**/*.ts'
     })

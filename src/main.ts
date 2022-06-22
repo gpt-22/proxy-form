@@ -1,9 +1,9 @@
 import './style.css'
 
-import { Form, FormField, form } from './data'
+import { form } from './data'
 import { caseConverter, getEmailValid, getPasswordValid } from './utils'
 
-const createFieldHTMLElement = (field: FormField): HTMLElement => {
+const createFieldHTMLElement = (field) => {
   const element = document.createElement('label')
   element.id = field.id
   element.className = 'field'
@@ -13,14 +13,14 @@ const createFieldHTMLElement = (field: FormField): HTMLElement => {
     <div class="field-hint">${field.hint}</div>
   `
 
-  element.addEventListener('input', (event: Event) => {
+  element.addEventListener('input', (event) => {
     if (event.target instanceof HTMLInputElement) {
       const newValue = event.target.value
       const fieldId = event.target.labels[0].id
       const field = Object.entries(formProxy).find((entry) => {
-        const value = entry[1] as FormField
+        const value = entry[1]
         return value.id === fieldId
-      })[1] as FormField
+      })[1]
 
       if (field) {
         field.value = newValue
@@ -34,7 +34,7 @@ const createFieldHTMLElement = (field: FormField): HTMLElement => {
   return element
 }
 
-const createFormHTMLElement = (form: Form): HTMLElement => {
+const createFormHTMLElement = (form) => {
   const element = document.createElement('form')
   element.id = element.className = 'form'
 
@@ -54,7 +54,7 @@ const createFormHTMLElement = (form: Form): HTMLElement => {
   fieldNodes.forEach((fieldNode) => formBody.append(fieldNode))
 
   const submitButton = element.querySelector('button[type=submit]')
-  submitButton.addEventListener('click', (event: Event) => {
+  submitButton.addEventListener('click', (event) => {
     event.preventDefault()
     console.log('submit')
   })
@@ -63,7 +63,7 @@ const createFormHTMLElement = (form: Form): HTMLElement => {
 }
 
 const formProxy = new Proxy(form, {
-  set: (obj, prop: string, value) => {
+  set: (obj, prop, value) => {
     console.log('set', caseConverter.toKebab(prop), value)
 
     onFormChange(prop, value)
@@ -86,11 +86,11 @@ const onFormChange = (prop, value) => {
 
   form.isValid = form.fieldEmail.isValid && form.fieldPassword.isValid
 
-  const submitButton: HTMLButtonElement = formNode.querySelector('button[type=submit]')
+  const submitButton = formNode.querySelector('button[type=submit]')
   submitButton.disabled = !form.isValid
 }
 
-const onEmailChange = (value: string) => {
+const onEmailChange = (value) => {
   const hintEl = fieldNodes[0].querySelector('.field-hint')
 
   const emailValid = getEmailValid(value)
@@ -99,7 +99,7 @@ const onEmailChange = (value: string) => {
   hintEl.innerHTML = formProxy.fieldEmail.hint
 }
 
-const onPasswordChange = (value: string) => {
+const onPasswordChange = (value) => {
   const hintEl = fieldNodes[1].querySelector('.field-hint')
 
   const passwordValid = getPasswordValid(value)
