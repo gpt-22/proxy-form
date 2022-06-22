@@ -1,0 +1,27 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2022,
+    "sourceType": "module"
+  },
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true
+  },
+  "plugins": ["@typescript-eslint"],
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "prettier"],
+  "rules": {
+    "linebreak-style": "off",
+    "strict": "off",
+    "semi": "off",
+    "max-len": "off",
+    "require-jsdoc": "off",
+    "new-cap": "off",
+    "no-invalid-this": "off",
+    "no-unused-vars": "warn",
+    "no-undef": "warn",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/no-var-requires": "off"
+  }
+}
