@@ -1,19 +1,7 @@
 import './style.css'
 
 import { Form, FormField, form } from './data'
-import caseConverter from './caseConverter'
-
-function getEmailValid(email: string): boolean {
-  return (
-    email.includes('@') &&
-    email.split('@')[0].length >= 3 &&
-    (email.includes('.ru') || email.includes('.com'))
-  )
-}
-
-function getPasswordValid(password: string): boolean {
-  return /.{6,}/.test(password)
-}
+import { caseConverter, getEmailValid, getPasswordValid } from './utils'
 
 const createFieldHTMLElement = (field: FormField): HTMLElement => {
   const element = document.createElement('label')
@@ -76,7 +64,7 @@ const createFormHTMLElement = (form: Form): HTMLElement => {
 
 const formProxy = new Proxy(form, {
   set: (obj, prop: string, value) => {
-    console.log('set', caseConverter.toSnake(prop), value)
+    console.log('set', caseConverter.toKebab(prop), value)
 
     onFormChange(prop, value)
 
@@ -87,7 +75,7 @@ const formProxy = new Proxy(form, {
 })
 
 const onFormChange = (prop, value) => {
-  const propId = caseConverter.toSnake(prop)
+  const propId = caseConverter.toKebab(prop)
   switch (propId) {
     case form.fieldEmail.id:
       onEmailChange(value.value)
